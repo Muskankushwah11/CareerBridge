@@ -46,12 +46,22 @@ const CompanySetup = () => {
         }
         try {
             setLoading(true);
-            const res = await axios.put(`${COMPANY_API_END_POINT}/update/${params.id}`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                },
-                withCredentials: true
-            });
+            // const res = await axios.put(`${COMPANY_API_END_POINT}/update/${params.id}`, formData, {
+            //     headers: {
+            //         'Content-Type': 'multipart/form-data'
+            //     },
+            //     withCredentials: true
+            // });
+             const res = await axios.put(
+    `https://careerbridge-fxsi.onrender.com/api/v1/company/update/${params.id}`,
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      withCredentials: true,
+    }
+  );
             if (res.data.success) {
                 toast.success(res.data.message);
                 navigate("/admin/companies");

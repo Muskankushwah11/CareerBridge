@@ -39,15 +39,26 @@ const useGetAllJobs = () => {
       try {
         const token = localStorage.getItem('token'); // 👈 get token
 
+        // const res = await axios.get(
+        //   `${JOB_API_END_POINT}/get?keyword=${searchedQuery}`,
+        //   {
+        //     headers: {
+        //       Authorization: `Bearer ${token}`, // 👈 send token
+        //     },
+        //     withCredentials: true,
+        //   }
+        // );
         const res = await axios.get(
-          `${JOB_API_END_POINT}/get?keyword=${searchedQuery}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`, // 👈 send token
-            },
-            withCredentials: true,
-          }
-        );
+  `https://careerbridge-fxsi.onrender.com/api/v1/job/get?keyword=${searchedQuery}`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`, // send JWT token
+      "Content-Type": "application/json",
+    },
+    withCredentials: true,
+  }
+);
+
 
         if (res.data.success) {
           dispatch(setAllJobs(res.data.jobs));

@@ -38,12 +38,20 @@ const useGetAllCompanies = () => {
       try {
         const token = localStorage.getItem('token'); // 👈 get token
 
-        const res = await axios.get(`${COMPANY_API_END_POINT}/get`, {
-          headers: {
-            Authorization: `Bearer ${token}`, // 👈 send token
-          },
-          withCredentials: true,
-        });
+        // const res = await axios.get(`${COMPANY_API_END_POINT}/get`, {
+        //   headers: {
+        //     Authorization: `Bearer ${token}`, // 👈 send token
+        //   },
+        //   withCredentials: true,
+        // });
+        const res = await axios.get("https://careerbridge-fxsi.onrender.com/api/v1/company/get", {
+  headers: {
+    Authorization: `Bearer ${token}`, // send JWT token
+    "Content-Type": "application/json"
+  },
+  withCredentials: true,
+});
+
 
         console.log('called');
         if (res.data.success) {

@@ -16,12 +16,17 @@ const CompanyCreate = () => {
     const dispatch = useDispatch();
     const registerNewCompany = async () => {
         try {
-            const res = await axios.post(`${COMPANY_API_END_POINT}/register`, {companyName}, {
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                withCredentials:true
-            });
+            // const res = await axios.post(`${COMPANY_API_END_POINT}/register`, {companyName}, {
+            //     headers:{
+            //         'Content-Type':'application/json'
+            //     },
+            //     withCredentials:true
+            // });
+            const res = await axios.post(
+  "https://careerbridge-fxsi.onrender.com/api/v1/company/register",
+  { companyName },
+  { withCredentials: true }
+);
             if(res?.data?.success){
                 dispatch(setSingleCompany(res.data.company));
                 toast.success(res.data.message);

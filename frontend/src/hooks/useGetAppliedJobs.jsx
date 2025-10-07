@@ -10,7 +10,12 @@ const useGetAppliedJobs = () => {
   useEffect(() => {
     const fetchAppliedJobs = async () => {
       try {
-        const res = await axios.get(`${APPLICATION_API_END_POINT}/get`, { withCredentials: true });
+        // const res = await axios.get(`${APPLICATION_API_END_POINT}/get`, { withCredentials: true });
+        const res = await axios.get(
+  "https://careerbridge-fxsi.onrender.com/api/v1/application/get",
+  { withCredentials: true }
+);
+
         console.log("Backend response:", res.data);
 
         // Check for correct key name
